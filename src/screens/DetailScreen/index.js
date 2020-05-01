@@ -1,11 +1,65 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Layout from '../../components/Layout';
+import colors from '../../utils/colors';
 
-export default props => {
-    console.log("PROPS DETAILS", props);
+export default ({ route = {}, navigation: { goBack = () => { } } = {} }) => {
+    const { params: { asteroid: {
+        name = null,
+        nasa_jpl_url = null,
+        is_potentially_hazardous_asteroid = false
+    } = {} } = {} } = route || {};
+    useEffect(() => {
+        if (!name || !nasa_jpl_url) goBack();
+    }, [])
     return (
-        <View>
-            <Text>Details Screen</Text>
-        </View>
+        <Layout>
+            <View style={styles.container}>
+                <View style={styles.box}>
+                    <View style={styles.header}>
+                        <Text>{name}</Text>
+                    </View>
+                    <View>
+                        <Text>"nasa_jpl_url"</Text>
+                        <Text>{nasa_jpl_url}</Text>
+                    </View>
+                    <View>
+                        <Text>"is_potentially_hazardous_asteroid"</Text>
+                        <Text>{is_potentially_hazardous_asteroid}</Text>
+                    </View>
+                </View>
+            </View>
+        </Layout>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    box: {
+        backgroundColor: `${colors.white}`,
+        padding: '5%',
+        shadowColor: `${colors.blackShadow}`,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        borderRadius: 5,
+        elevation: 3,
+    },
+    header: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        // backgroundColor: 'pink',
+        marginVertical: 20,
+    }
+});

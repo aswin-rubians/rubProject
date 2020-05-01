@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     randomContainer: {
         position: 'absolute',
-        top: 10,
-        right: 10,
+        bottom: 16,
+        right: 16,
     },
 })
