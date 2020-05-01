@@ -14,17 +14,29 @@ const api_key = API_KEY || '';
 export default props => {
     const [loading, setLoading] = useState(false);
     const { navigation: { navigate = () => { } } = {} } = props;
-    // OnAstroid ID
+    // OnAstroid ID Recieved
     const retrieveAstroid = asteroid => {
         setLoading(true);
         Request({ url: `/${asteroid}`, params: { api_key } }).then(resp => {
             setLoading(false);
-            console.log("retrieveAstroid RESP", resp);
+            const {
+                name = null,
+                nasa_jpl_url = null,
+                is_potentially_hazardous_asteroid = false,
+            } = resp;
+            if (!(name && nasa_jpl_url)) throw new Error('Something Went Wrong');
+            else navigate('Detail', {
+                asteroid: {
+                    name,
+                    nasa_jpl_url,
+                    is_potentially_hazardous_asteroid
+                },
+            })
         }).catch(() => {
             setLoading(false);
         });
     };
-    // on Random
+    // on Random Asteroid Press
     const onRandomAsteroid = () => {
         setLoading(true);
         Request({ url: '/browse', params: { api_key } }).then(resp => {

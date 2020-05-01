@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import colors from '../../../utils/colors';
 
 export default ({ onSubmit = () => { } }) => {
-    const [asteroidId, setAsteroidId] = useState('2021277');
+    const [asteroidId, setAsteroidId] = useState('');
     return (
         <View style={styles.formContainer}>
             <Text style={styles.header}>Asteroid Search</Text>
