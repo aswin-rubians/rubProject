@@ -17,15 +17,11 @@ export default ({ route = {}, navigation: { goBack = () => { } } = {} }) => {
             <View style={styles.container}>
                 <View style={styles.box}>
                     <View style={styles.header}>
-                        <Text>{name}</Text>
+                        <Text style={styles.headerText}>{name}</Text>
                     </View>
                     <View>
-                        <Text>"nasa_jpl_url"</Text>
-                        <Text>{nasa_jpl_url}</Text>
-                    </View>
-                    <View>
-                        <Text>"is_potentially_hazardous_asteroid"</Text>
-                        <Text>{is_potentially_hazardous_asteroid}</Text>
+                        <Text>"nasa_jpl_url": {nasa_jpl_url}</Text>
+                        <Text>"is_potentially_hazardous_asteroid": {is_potentially_hazardous_asteroid ? "true" : "false"}</Text>
                     </View>
                 </View>
             </View>
@@ -55,11 +51,18 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     header: {
+        minWidth: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
-        // backgroundColor: 'pink',
         marginVertical: 20,
+        padding: 5,
+    },
+    headerText: {
+        textAlign: 'center',
+        width: '100%',
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: `${colors.primaryColor}`,
     }
 });
