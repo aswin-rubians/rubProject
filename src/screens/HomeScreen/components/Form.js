@@ -16,7 +16,7 @@ export default ({ onSubmit = () => { } }) => {
 const styles = StyleSheet.create({
     formContainer: {
         display: 'flex',
-        padding: '2% 5%',
+        padding: '5%',
         width: '95%',
         alignItems: 'center',
         justifyContent: 'center',
